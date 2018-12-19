@@ -6,6 +6,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
+import com.fanxin.android.recyclerviewdemo.adapter.MyAdapter;
+import com.fanxin.android.recyclerviewdemo.utils.JsonUtil;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,20 +35,20 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        //设置数据源
+        //请求数据源
         requestData();
 
-
-
-
-
+        //设置适配器
+        MyAdapter adapter = new MyAdapter(this,resList);
+        //resList中装的是所有小图的链接
+        recyclerView.setAdapter(adapter);
 
     }
 
     private void requestData() {
 
         OkHttpClient mOkHttpClient = new OkHttpClient();
-        String URL = "";
+        String URL = "https://www.imooc.com/api/teacher?type=2&page=1";
         Request.Builder requestBuild = new Request.Builder().url(URL);
         Request request = requestBuild.build();
         Call mcall = mOkHttpClient.newCall(request);
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < data.size(); i++) {
                     ImageData.DataBean dataBean = data.get(i);
                     String picBig = dataBean.getPicSmall();
+                    //取得小图的地址，添加到资源的集合中
                     resList.add(picBig);
                 }
 
