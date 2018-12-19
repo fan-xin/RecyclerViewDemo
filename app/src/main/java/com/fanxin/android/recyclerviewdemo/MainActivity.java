@@ -3,10 +3,13 @@ package com.fanxin.android.recyclerviewdemo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.fanxin.android.recyclerviewdemo.adapter.MyAdapter;
+import com.fanxin.android.recyclerviewdemo.adapter.NormalAdapter;
 import com.fanxin.android.recyclerviewdemo.utils.JsonUtil;
 
 import java.io.IOException;
@@ -22,6 +25,9 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     private List resList = new ArrayList();
+    private static final String TAG = "MainActivity-app";
+    //private MyAdapter adapter;
+    private NormalAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +38,34 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.id_recyclerView);
 
         //设置布局管理器
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        //GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+
+//        recyclerView.setLayoutManager(gridLayoutManager);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+
 
         //请求数据源
         requestData();
 
         //设置适配器
-        MyAdapter adapter = new MyAdapter(this,resList);
+        //adapter = new MyAdapter(this,resList);
+        adapter = new NormalAdapter(getData());
         //resList中装的是所有小图的链接
         recyclerView.setAdapter(adapter);
+
+    }
+
+    private ArrayList<String> getData() {
+        ArrayList<String> data = new ArrayList<>();
+        String temp = " item";
+        for (int i = 0; i < 20; i++) {
+            data.add(i+temp);
+        }
+
+        return data;
 
     }
 
@@ -66,9 +90,14 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < data.size(); i++) {
                     ImageData.DataBean dataBean = data.get(i);
                     String picBig = dataBean.getPicSmall();
+                    //在日志中输出获取到的图片地址
+                    Log.d(TAG, "onResponse: "+picBig);
+
                     //取得小图的地址，添加到资源的集合中
                     resList.add(picBig);
                 }
+
+//                adapter.notifyDataSetChanged();
 
             }
         });

@@ -3,6 +3,7 @@ package com.fanxin.android.recyclerviewdemo.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MainViewHolder> {
     private List<String> list;//要显示的数据
     private Context context;//创建视图时需要
 
+    private static final String TAG = "MyAdapter-app";
+
     public MyAdapter(Context context, List<String> list){
         this.context = context;
         this.list = list;
+        notifyDataSetChanged();
+    }
+
+    /*
+     * 初始化控件
+     * */
+    public static class MainViewHolder extends RecyclerView.ViewHolder{
+        ImageView imageView;
+        public MainViewHolder(View itemView){
+            super(itemView);
+            imageView = (ImageView) itemView.findViewById(R.id.id_imageView);
+        }
+
     }
 
     /*
@@ -47,8 +63,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MainViewHolder> {
     public void onBindViewHolder(@NonNull MyAdapter.MainViewHolder mainViewHolder, int i) {
         //获取图片地址
         String url = list.get(i);
+        Log.d(TAG, "onBindViewHolder: "+url);
+
         //使用Glide框架获取图片
-        Glide.with(context).load(url).into(mainViewHolder.imageView);
+        Glide.with(context).load("http://img.mukewang.com/55237dcc0001128c06000338-300-170.jpg").into(mainViewHolder.imageView);
     }
 
     /**
@@ -59,15 +77,5 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MainViewHolder> {
         return list.size();
     }
 
-    /*
-    * 初始化控件
-    * */
-    public static class MainViewHolder extends RecyclerView.ViewHolder{
-        ImageView imageView;
-        public MainViewHolder(View itemView){
-            super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.id_imageView);
-        }
 
-    }
 }
