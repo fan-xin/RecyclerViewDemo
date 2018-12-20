@@ -10,6 +10,7 @@
         /-->
     <TextView
         android:id="@+id/id_tv"
+        android:gravity="center"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 

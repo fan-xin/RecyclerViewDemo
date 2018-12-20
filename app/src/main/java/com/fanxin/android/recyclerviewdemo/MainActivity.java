@@ -52,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
         //设置适配器
         //adapter = new MyAdapter(this,resList);
-        adapter = new NormalAdapter(getData());
+        //adapter = new NormalAdapter(getData());
+
+        adapter = new NormalAdapter(resList);
         //resList中装的是所有小图的链接
         recyclerView.setAdapter(adapter);
 
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     ImageData.DataBean dataBean = data.get(i);
                     String picBig = dataBean.getPicSmall();
                     //在日志中输出获取到的图片地址
-                    Log.d(TAG, "onResponse: "+picBig);
+                    Log.d(TAG, "111 onResponse: "+picBig);
 
                     //取得小图的地址，添加到资源的集合中
                     resList.add(picBig);
@@ -101,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 }

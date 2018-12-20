@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.fanxin.android.recyclerviewdemo.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Fan Xin <fanxin.hit@gmail.com>
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.VH> {
 
-    private ArrayList<String> mDatas;
+    private List<String> mDatas;
 
     public static class VH extends RecyclerView.ViewHolder{
         public final TextView title;
@@ -28,7 +29,7 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.VH> {
     }
 
     //private List<String> mDatas;
-    public NormalAdapter(ArrayList<String> data){
+    public NormalAdapter(List<String> data){
         this.mDatas = data;
         notifyDataSetChanged();
 
@@ -51,12 +52,12 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.VH> {
     @Override
     public void onBindViewHolder(@NonNull NormalAdapter.VH vh, int i) {
         vh.title.setText(mDatas.get(i));
-        vh.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        vh.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
     }
 
