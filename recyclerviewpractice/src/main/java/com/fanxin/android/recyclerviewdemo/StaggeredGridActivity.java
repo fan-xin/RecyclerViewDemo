@@ -37,6 +37,10 @@ public class StaggeredGridActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(imageAdapter);
 
+        //设置瀑布流的上下左右的间距都是10
+        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(10);
+        recyclerView.addItemDecoration(spacesItemDecoration);
+
     }
 
     private void initData() {

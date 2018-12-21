@@ -71,7 +71,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MainViewHold
         mainViewHolder.imageView.setBackgroundResource(resList.get(i));
         Random random = new Random();
         //高度按照随机数变化
-        int height = random.nextInt(1000);
+        int height = random.nextInt(2000);
         mainViewHolder.imageView.setLayoutParams(
                 new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,height));
     }
