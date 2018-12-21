@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.id_recyclerView);
 
         //设置布局管理器
-        //GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
 
 //        recyclerView.setLayoutManager(gridLayoutManager);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
