@@ -24,10 +24,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MainViewHolder> {
 
     private static final String TAG = "MyAdapter-app";
 
+    //构造函数
     public MyAdapter(Context context, List<String> list){
         this.context = context;
         this.list = list;
-        notifyDataSetChanged();
+        //notifyDataSetChanged();
+    }
+
+
+
+    /*
+    * 创建视图
+    * */
+    @NonNull
+    @Override
+    public MainViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        //创建视图
+        View view = LayoutInflater.from(context).inflate(R.layout.simple_item,viewGroup,false);
+        //实例化MainviewHolder
+        MainViewHolder holder = new MainViewHolder(view);
+
+        return holder;
     }
 
     /*
@@ -37,22 +54,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MainViewHolder> {
         ImageView imageView;
         public MainViewHolder(View itemView){
             super(itemView);
-            //imageView = (ImageView) itemView.findViewById(R.id.id_imageView);
+            imageView = (ImageView) itemView.findViewById(R.id.id_imageView);
         }
 
-    }
-
-    /*
-    * 创建视图
-    * */
-    @NonNull
-    @Override
-    public MainViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.simple_item,viewGroup,false);
-        //实例化MainviewHolder
-        MainViewHolder holder = new MainViewHolder(view);
-
-        return holder;
     }
 
     /**
@@ -66,7 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MainViewHolder> {
         Log.d(TAG, "onBindViewHolder: "+url);
 
         //使用Glide框架获取图片
-        Glide.with(context).load("http://img.mukewang.com/55237dcc0001128c06000338-300-170.jpg").into(mainViewHolder.imageView);
+        Glide.with(context).load(url).into(mainViewHolder.imageView);
     }
 
     /**

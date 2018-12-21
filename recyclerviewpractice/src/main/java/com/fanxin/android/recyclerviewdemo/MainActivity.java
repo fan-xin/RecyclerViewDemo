@@ -24,10 +24,13 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List resList = new ArrayList();
+    public List resList = new ArrayList();
     private static final String TAG = "MainActivity-app";
     //private MyAdapter adapter;
-    private NormalAdapter adapter;
+//    private NormalAdapter adapter;
+    private MyAdapter adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +53,40 @@ public class MainActivity extends AppCompatActivity {
         //请求数据源
         requestData();
 
-        //设置适配器
-        //adapter = new MyAdapter(this,resList);
-        //adapter = new NormalAdapter(getData());
+        try {
+            //需要等待1.5才能解析完成
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        adapter = new NormalAdapter(resList);
+        System.out.println("main process resList size is "+resList.size());
+
+//        输出图片地址
+//        for (int i = 0; i < resList.size(); i++) {
+//            System.out.println("hello "+resList.get(i));
+//        }
+
+        //设置适配器
+        adapter = new MyAdapter(this,resList);
+//        adapter = new NormalAdapter(resList);
+
+
+
+        //adapter = new NormalAdapter(getData());
         //resList中装的是所有小图的链接
         recyclerView.setAdapter(adapter);
 
     }
 
-    private ArrayList<String> getData() {
-        ArrayList<String> data = new ArrayList<>();
+    private List<String> getData() {
+        List<String> data = new ArrayList<>();
+
         String temp = " item";
         for (int i = 0; i < 20; i++) {
             data.add(i+temp);
+            System.out.println("get Data "+resList.toString());
+//            data.add(resList.get(i).toString());
         }
 
         return data;
@@ -98,11 +120,14 @@ public class MainActivity extends AppCompatActivity {
                     //取得小图的地址，添加到资源的集合中
                     resList.add(picBig);
                 }
+                System.out.println(" request Data: resList size is "+resList.size());
 
-//                adapter.notifyDataSetChanged();
+               //adapter.notifyDataSetChanged();
 
             }
         });
+
+
 
     }
 }
