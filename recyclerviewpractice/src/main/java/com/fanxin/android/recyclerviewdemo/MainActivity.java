@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 //        adapter = new NormalAdapter(resList);
 
 
-
         //adapter = new NormalAdapter(getData());
         //resList中装的是所有小图的链接
         recyclerView.setAdapter(adapter);
@@ -126,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
 
     }
 }

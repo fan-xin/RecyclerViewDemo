@@ -5,11 +5,11 @@
     android:gravity="center_horizontal"
     android:layout_height="150dp">
     <ImageView
+        android:id="@+id/id_imageView"
         android:layout_gravity="center_horizontal"
         android:padding="8dp"
         android:layout_width="400dp"
         android:layout_height="150dp"
-        android:id="@+id/id_imageView"
         android:scaleType="fitCenter"
         />
     <TextView
