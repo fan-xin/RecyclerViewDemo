@@ -19,6 +19,7 @@ import java.util.Random;
  * 18/12/21  17:16
  */
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MainViewHolder> {
+
     private Context context;
     private List<Integer> resList;
 
@@ -37,14 +38,25 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MainViewHold
         return holder;
     }
 
-    public static class MainViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        public MainViewHolder(@NonNull View itemView) {
-            super(itemView);
-            itemView = (ImageView)itemView.findViewById(R.id.imageView);
+//    public static class MainViewHolder extends RecyclerView.ViewHolder {
+//        ImageView imageView;
+//        public MainViewHolder(@NonNull View itemView) {
+//            super(itemView);
+//            itemView = (ImageView)itemView.findViewById(R.id.mmimageView);
+//
+//        }
+//    }
 
+    public static class MainViewHolder extends RecyclerView.ViewHolder{
+        ImageView imageView;
+        public MainViewHolder(View itemView){
+            super(itemView);
+            imageView = (ImageView) itemView.findViewById(R.id.mmimageView);
         }
+
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull ImageAdapter.MainViewHolder mainViewHolder, int i) {
@@ -52,6 +64,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MainViewHold
         if (mainViewHolder.imageView == null){
             System.out.println("image View is empty!!!");
         }
+        System.out.println("i is "+i);
 
         System.out.println("resList is "+resList.get(i).toString());
 

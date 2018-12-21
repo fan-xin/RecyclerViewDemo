@@ -18,9 +18,9 @@ public class StaggeredGridActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_staggered_grid);
         //初始化
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.id_recyclerView);
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
         //设置layoutManager
         StaggeredGridLayoutManager staggeredGridLayoutManager =
@@ -31,7 +31,10 @@ public class StaggeredGridActivity extends AppCompatActivity {
         //设置数据源
         initData();
 
+        System.out.println("StaggeredGridActivity: resList is "+resList.size());
+
         ImageAdapter imageAdapter = new ImageAdapter(this,resList);
+
         recyclerView.setAdapter(imageAdapter);
 
     }
