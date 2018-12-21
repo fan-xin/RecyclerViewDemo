@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> getData() {
         ArrayList<String> data = new ArrayList<>();
         String temp = " item";
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 200; i++) {
             //将要显示的数据加入数据集
             data.add(i+temp);
         }
