@@ -3,6 +3,7 @@ package com.fanxin.android.recyclerviewdemo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
@@ -40,6 +41,10 @@ public class SplitLineRecyActivity extends Activity {
         //设置分割线
         RecycleViewDivider recycleViewDivider = new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL,R.drawable.splitline);
         recyclerView.addItemDecoration(recycleViewDivider);
+
+
+        //设置RecyclerView　item动画
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
     }
