@@ -26,13 +26,16 @@ public class ClickGridActivity extends AppCompatActivity {
 
     private List<String> resList = new ArrayList<>();
 
+    //adapter要设置为全局变量才能实现notifyDataSetChanged更新数据的方法
+    private ImageClickAdapter imageClickAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_staggered_grid);
 
         //初始化
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.id_recyclerView);
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
         //设置瀑布流的布局
         StaggeredGridLayoutManager staggeredGridLayoutManager =
@@ -42,8 +45,17 @@ public class ClickGridActivity extends AppCompatActivity {
         //准备数据源
         requestData();
 
+        try {
+            //需要等待1.5才能解析完成
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(" main: resList size is "+resList.size());
+
         //设置adapter
-        ImageClickAdapter imageClickAdapter = new ImageClickAdapter(this,resList);
+        imageClickAdapter = new ImageClickAdapter(this,resList);
         recyclerView.setAdapter(imageClickAdapter);
 
         imageClickAdapter.setOnItemClickListener(new ImageClickAdapter.OnItemClickListener() {
@@ -97,7 +109,7 @@ public class ClickGridActivity extends AppCompatActivity {
                 }
                 System.out.println(" request Data: resList size is "+resList.size());
 
-                //adapter.notifyDataSetChanged();
+                //imageClickAdapter.notifyDataSetChanged();
 
             }
         });

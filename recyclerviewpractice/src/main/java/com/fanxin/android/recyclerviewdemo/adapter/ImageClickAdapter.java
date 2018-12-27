@@ -63,7 +63,7 @@ public class ImageClickAdapter extends RecyclerView.Adapter<ImageClickAdapter.Ma
         ImageView imageView;
         public MainViewHolder(View itemView){
             super(itemView);
-            imageView = (ImageView)itemView.findViewById(R.id.id_imageView);
+            imageView = (ImageView)itemView.findViewById(R.id.mmimageView);
 
         }
     }

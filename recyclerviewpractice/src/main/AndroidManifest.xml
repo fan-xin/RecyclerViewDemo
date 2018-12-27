@@ -12,10 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".StaggeredGridActivity"></activity>
-        <activity android:name=".SplitLineRecyActivity"></activity>
+        <activity android:name=".MainActivity">
 
+        </activity>
+
+        <!-- 瀑布流的Activity -->
+        <activity android:name=".StaggeredGridActivity">
+
+        </activity>
+        <!--带分隔符的Activity -->
+        <activity android:name=".SplitLineRecyActivity">
+
+        </activity>
+
+        <!--带事件响应和下拉刷新的Activity -->
         <activity android:name=".ClickGridActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
