@@ -14,14 +14,16 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".StaggeredGridActivity"></activity>
-        <activity android:name=".SplitLineRecyActivity">
+        <activity android:name=".SplitLineRecyActivity"></activity>
+
+        <activity android:name=".ClickGridActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".ClickGridActivity"></activity>
     </application>
 
 </manifest>

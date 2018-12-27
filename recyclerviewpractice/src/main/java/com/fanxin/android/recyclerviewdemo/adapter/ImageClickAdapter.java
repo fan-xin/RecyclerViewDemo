@@ -1,9 +1,9 @@
 package com.fanxin.android.recyclerviewdemo.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -40,6 +40,11 @@ public class ImageClickAdapter extends RecyclerView.Adapter<ImageClickAdapter.Ma
 
     }
 
+    //长按事件的接口
+    public interface OnItemLongClickListener{
+        public abstract void OnItemLongClick(int itemPosition);
+    }
+
     //对外暴露点击事件的接口
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
@@ -52,10 +57,7 @@ public class ImageClickAdapter extends RecyclerView.Adapter<ImageClickAdapter.Ma
 
     }
 
-    //长按事件的接口
-    public interface OnItemLongClickListener{
-        public abstract void OnItemLongClick(int itemPosition);
-    }
+
 
     public static class MainViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
@@ -69,25 +71,46 @@ public class ImageClickAdapter extends RecyclerView.Adapter<ImageClickAdapter.Ma
 
     @NonNull
     @Override
-    public ImageClickAdapter onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return null;
+    public MainViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        //创建视图
+        View view = LayoutInflater.from(context).inflate(R.layout.image_item,viewGroup,false);
+        //实例化MainViewHolder，传递view
+        MainViewHolder holder = new MainViewHolder(view);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainViewHolder mainViewHolder, int i) {
+    public void onBindViewHolder(@NonNull MainViewHolder mainViewHolder, final int i) {
         Glide.with(context).load(resList.get(i)).into(mainViewHolder.imageView);
         Random random = new Random();
         int height = random.nextInt(1000);
         mainViewHolder.imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,height));
 
         //添加点击事件
-        
+        //通过imageView本身自带的点击事件和长按事件
+        //在点击事件中调用接口
+
+        mainViewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.OnItemClick(i);
+            }
+        });
+
+        mainViewHolder.imageView.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View v) {
+                onItemLongClickListener.OnItemLongClick(i);
+                return true;
+            }
+        });
+
 
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return resList.size();
     }
 }

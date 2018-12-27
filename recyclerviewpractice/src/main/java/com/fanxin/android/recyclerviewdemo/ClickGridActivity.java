@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.fanxin.android.recyclerviewdemo.adapter.ImageClickAdapter;
 import com.fanxin.android.recyclerviewdemo.utils.JsonUtil;
 
 import java.io.IOException;
@@ -39,6 +41,26 @@ public class ClickGridActivity extends AppCompatActivity {
 
         //准备数据源
         requestData();
+
+        //设置adapter
+        ImageClickAdapter imageClickAdapter = new ImageClickAdapter(this,resList);
+        recyclerView.setAdapter(imageClickAdapter);
+
+        imageClickAdapter.setOnItemClickListener(new ImageClickAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int itemPosition) {
+                Toast.makeText(ClickGridActivity.this,"点击项目： "+itemPosition,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        imageClickAdapter.setOnItemLongClickListener(new ImageClickAdapter.OnItemLongClickListener() {
+            @Override
+            public void OnItemLongClick(int itemPosition) {
+                Toast.makeText(ClickGridActivity.this,"长按项目： "+itemPosition,Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
 
